@@ -3,6 +3,13 @@ import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import ShopPage from '../pages/ShopPage';
 import ErrorPage from '../pages/ErrorPage';
+import BlogPage from '../pages/BlogPage';
+import ContactPage from '../pages/ContactPage';
+// import CheckOut from '../pages/CheckOut';
+// import SingleProcduct from '../pages/SingleProduct';
+import ProductPage from '../pages/ProductPage';
+import CartPage from '../pages/CartPage';
+import SingleProcduct from '../pages/SingleProduct';
 
 export const routerConfig = [
   {
@@ -10,7 +17,7 @@ export const routerConfig = [
     component: HomePage,
     isHeader: true,
     isFooter: true,
-    isBanner: true,
+    isBanner: false,
     title: 'Home'
   },
   {
@@ -36,5 +43,53 @@ export const routerConfig = [
     isFooter: false,
     isBanner: true,
     title: '404 Not Found'
+  },
+  {
+    path: SCREEN_URL.BLOGPAGE,
+    component: BlogPage,
+    isHeader: true,
+    isFooter: true,
+    isBanner: true,
+    title: 'Blog'
+  },
+  {
+    path: SCREEN_URL.CONTACTPAGE,
+    component: ContactPage,
+    isHeader: true,
+    isFooter: true,
+    isBanner: true,
+    title: 'Contact'
+  },
+  // {
+  //   path: SCREEN_URL.CHECKOUT,
+  //   component: CheckOut,
+  //   isHeader: true,
+  //   isFooter: true,
+  //   isBanner: true,
+  //   title: 'Check Out'
+  // },
+  {
+    path: SCREEN_URL.SINGLE_PRODUCT,
+    component: SingleProcduct,
+    isHeader: true,
+    isFooter: true,
+    isBanner: true,
+    title: 'Single Product'
+  },
+  {
+    path: SCREEN_URL.PRODUCT,
+    component: ProductPage,
+    isHeader: true,
+    isFooter: true,
+    isBanner: true,
+    title: 'Product'
+  },
+  {
+    path: SCREEN_URL.CART,
+    component: CartPage,
+    isHeader: true,
+    isFooter: true,
+    isBanner: true,
+    title: 'Cart'
   }
 ];

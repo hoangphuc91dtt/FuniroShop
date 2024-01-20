@@ -12,8 +12,9 @@ import {
   Typography
 } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import ProductCard from '../../components/ProductCard';
-import { fetchData } from '../../data/api';
+import ProductCart from '../../components/ProductCart';
+import { informationCard } from '../../data/inforCard';
+import { addProduct } from '../../data/inforCard';
 import FutureComponent from '../../components/FutureComponent';
 
 const ShopPage = () => {
@@ -22,7 +23,7 @@ const ShopPage = () => {
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
-        const data = await fetchData(); // Use the fetchData function
+        const data = await informationCard(); // Use the fetchData function
         setProductsData(data);
       } catch (error) {
         // Handle error if needed
@@ -30,50 +31,33 @@ const ShopPage = () => {
     };
     fetchDataFromApi();
   }, []);
+
+  const handleAddToCart = async (id, thumbnail, title, oddPrice) => {
+    const item = productsData.find((item) => item.id === id);
+
+    await addProduct(item);
+    window.location.reload();
+  };
   return (
     <>
       <Stack>
         {/* 78 */}
-        <Stack position={'relative'}>
-          <img
-            src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705684050/ShopImage01_plvame.png"
-            alt=""
-            width={'100%'}
-          />
-          <Stack
-            spacing={2}
-            sx={{
-              position: 'absolute',
-              flexDirection: 'column',
-              alignItems: 'stretch',
-              transform: 'translate(-50%, -20%)',
-              transition: '.3s',
-              top: '50%',
-              left: '50%'
-            }}>
-            <Typography variant="h2" fontSize={'48px'}>
-              Shop
-            </Typography>
-            <Stack direction={'row'}>
-              <Typography variant="h5">Home</Typography>
-              <NavigateNextIcon></NavigateNextIcon>
-              <Typography variant="h5">Shop</Typography>
-            </Stack>
-          </Stack>
-        </Stack>
+
         {/*  63*/}
         <Stack alignItems={'center'} py={'40px'} px={'140px'}>
           <Grid container spacing={3}>
             {productsData.map(
               ({ id, thumbnail, title, description, newPrice, oddPrice, discount }) => (
                 <Grid item key={id} xs={12} sm={6} md={4} lg={3}>
-                  <ProductCard
+                  <ProductCart
+                    id={id}
                     thumbnail={thumbnail}
                     title={title}
                     description={description}
                     newPrice={newPrice}
                     oddPrice={oddPrice}
                     discount={discount}
+                    handleAddToCart={handleAddToCart}
                   />
                 </Grid>
               )

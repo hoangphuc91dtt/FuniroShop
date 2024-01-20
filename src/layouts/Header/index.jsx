@@ -1,20 +1,42 @@
+import React, { useState } from 'react';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  IconButton,
+  Stack,
+  Tab,
+  Tabs,
+  Typography,
+  Button
+} from '@mui/material';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { IconButton, Stack, Tab, Tabs } from '@mui/material';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Furniro from '../../assets/Furniro.png';
 import { SCREEN_URL } from '../../constants/screenUrls';
 import { APP_COLORS } from '../../themes';
+import ShoppingCart from '../../components/ShoppingCart';
 
 const Header = () => {
   const [value, setValue] = useState(0);
+  const [isCartOpen, setCartOpen] = useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const handleOpenCart = () => {
+    setCartOpen(true);
+  };
+
+  const handleCloseCart = () => {
+    setCartOpen(false);
+  };
+
   return (
     <Stack
       height={100}
@@ -44,8 +66,8 @@ const Header = () => {
           }}>
           <Tab label="Home" component={Link} to={SCREEN_URL.HOME} />
           <Tab label="Shop" component={Link} to={SCREEN_URL.SHOP} />
-          <Tab label="About" component={Link} to={SCREEN_URL.ABOUT} />
-          <Tab label="Contact" component={Link} to={SCREEN_URL.CONTACT} />
+          <Tab label="Blog" component={Link} to={SCREEN_URL.BLOGPAGE} />
+          <Tab label="Contact" component={Link} to={SCREEN_URL.CONTACTPAGE} />
         </Tabs>
       </Stack>
       <Stack direction={'row'} gap={3}>
@@ -58,10 +80,11 @@ const Header = () => {
         <IconButton>
           <FavoriteBorderOutlinedIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={handleOpenCart}>
           <ShoppingCartOutlinedIcon />
         </IconButton>
       </Stack>
+      <ShoppingCart isOpen={isCartOpen} onClose={handleCloseCart} />
     </Stack>
   );
 };
