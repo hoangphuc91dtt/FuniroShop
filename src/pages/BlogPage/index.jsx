@@ -49,7 +49,9 @@ const BlogPage = () => {
           </Stack>
           <Stack>
             <Stack direction="row" spacing={20} pb={3}>
-              <Typography variant="h1">Going all-in with millennial design</Typography>
+              <Typography variant="h1" fontSize={30}>
+                Going all-in with millennial design
+              </Typography>
             </Stack>
           </Stack>
           <Stack>
@@ -68,11 +70,8 @@ const BlogPage = () => {
             </Stack>
           </Stack>
 
-          <Stack width={'100px'} textAlign={'center'} display={'flex'} alignItems={'center'} pb={3}>
-            <Typography paddingTop={'10px'} paddingBlockEnd={'10px'}>
-              Read more
-            </Typography>
-            <Stack width={'60%'} height={'3px'} bgcolor={'black'}></Stack>
+          <Stack alignItems={'end'} pb={3}>
+            <Button variant="outlined">Read more</Button>
           </Stack>
           <Stack direction="row" spacing={20} pb={3}>
             <img src={img2} alt="" width={'100%'} />
@@ -104,7 +103,9 @@ const BlogPage = () => {
           <Stack>
             <Stack direction="row" spacing={20} pb={3}>
               {' '}
-              <Typography variant="h1">Exploring new ways of decorating</Typography>
+              <Typography variant="h1" fontSize={30}>
+                Exploring new ways of decorating
+              </Typography>
             </Stack>
           </Stack>
           <Stack>
@@ -121,11 +122,8 @@ const BlogPage = () => {
             </Stack>
           </Stack>
 
-          <Stack width={'100px'} textAlign={'center'} display={'flex'} alignItems={'center'} pb={3}>
-            <Typography paddingTop={'10px'} paddingBlockEnd={'10px'}>
-              Read more
-            </Typography>
-            <Stack width={'60%'} height={'3px'} bgcolor={'black'}></Stack>
+          <Stack alignItems={'end'} pb={3}>
+            <Button variant="outlined">Read more</Button>
           </Stack>
           <Stack direction="row" spacing={20} pb={3}>
             <img src={img3} alt="" width={'100%'} />
@@ -157,7 +155,9 @@ const BlogPage = () => {
           </Stack>
           <Stack>
             <Stack direction="row" spacing={20} pb={3}>
-              <Typography variant="h1">Handmade pieces that took time to make</Typography>
+              <Typography variant="h1" fontSize={30}>
+                Handmade pieces that took time to make
+              </Typography>
             </Stack>
           </Stack>
           <Stack>
@@ -173,11 +173,8 @@ const BlogPage = () => {
               </Typography>
             </Stack>
           </Stack>
-          <Stack width={'100px'} textAlign={'center'} display={'flex'} alignItems={'center'} pb={3}>
-            <Typography paddingTop={'10px'} paddingBlockEnd={'10px'}>
-              Read more
-            </Typography>
-            <Stack width={'60%'} height={'3px'} bgcolor={'black'}></Stack>
+          <Stack alignItems={'end'} pb={3}>
+            <Button variant="outlined">Read more</Button>
           </Stack>
         </Stack>
         <Stack width="36%">
@@ -201,7 +198,9 @@ const BlogPage = () => {
           </Stack>
           <Stack>
             <Stack direction="row" spacing={20} pb={3} pl={5}>
-              <Typography variant="h1">Categories</Typography>
+              <Typography variant="h1" fontSize={30}>
+                Categories
+              </Typography>
             </Stack>
           </Stack>
           <Stack direction="row" spacing={15} pb={3} pl={5} width={100}>
@@ -245,46 +244,63 @@ const BlogPage = () => {
             </Stack>
           </Stack>
           <Stack pl={5} pb={3}>
-            <Typography variant="h1">Recent Posts</Typography>
+            <Typography variant="h1" fontSize={30}>
+              Recent Posts
+            </Typography>
           </Stack>
           <Stack direction="row" gap={2} width="400px" pb={5} pl={5}>
             <img src={img4} alt="" />
             <Stack>
-              <Typography variant="h3">Going all-in with</Typography>
-              <Typography variant="h3">millennial design</Typography>
-              <Typography variant="h3 ">03 Aug 2022</Typography>
+              <Typography variant="h3" fontSize={22}>
+                Going all-in with millennial design
+              </Typography>
+              <Typography variant="h3 " fontSize={14}>
+                03 Aug 2022
+              </Typography>
             </Stack>
           </Stack>
           <Stack direction="row" gap={2} width="400px" pb={5} pl={5}>
             <img src={img5} alt="" />
             <Stack>
-              <Typography variant="h3">Exploring new ways</Typography>
-              <Typography variant="h3">of decorating</Typography>
-              <Typography variant="h3 ">03 Aug 2022</Typography>
+              <Typography variant="h3" fontSize={22}>
+                Exploring new ways of decorating
+              </Typography>
+              <Typography variant="h3 " fontSize={14}>
+                03 Aug 2022
+              </Typography>
             </Stack>
           </Stack>
           <Stack direction="row" gap={2} width="400px" pb={5} pl={5}>
             <img src={img6} alt="" />
             <Stack>
-              <Typography variant="h3">Handmade pieces</Typography>
-              <Typography variant="h3">that took time to make</Typography>
-              <Typography variant="h3 ">03 Aug 2022</Typography>
+              <Typography variant="h3" fontSize={22}>
+                Handmade pieces that took time to make
+              </Typography>
+              <Typography variant="h3 " fontSize={14}>
+                03 Aug 2022
+              </Typography>
             </Stack>
           </Stack>
           <Stack direction="row" gap={2} width="400px" pb={5} pl={5}>
             <img src={img7} alt="" />
             <Stack>
-              <Typography variant="h3">Modern home in</Typography>
-              <Typography variant="h3">Milan</Typography>
-              <Typography variant="h3 ">03 Aug 2022</Typography>
+              <Typography variant="h3" fontSize={22}>
+                Modern home in Milan
+              </Typography>
+              <Typography variant="h3 " fontSize={14}>
+                03 Aug 2022
+              </Typography>
             </Stack>
           </Stack>
           <Stack direction="row" gap={2} width="400px" pb={5} pl={5}>
             <img src={img8} alt="" />
             <Stack>
-              <Typography variant="h3">Colorful office</Typography>
-              <Typography variant="h3">redesign</Typography>
-              <Typography variant="h3 ">03 Aug 2022</Typography>
+              <Typography variant="h3" fontSize={22}>
+                Colorful office redesign
+              </Typography>
+              <Typography variant="h3 " fontSize={14}>
+                03 Aug 2022
+              </Typography>
             </Stack>
           </Stack>
         </Stack>

@@ -22,57 +22,77 @@ const ContactPage = () => {
           <Stack direction="row" gap={2}>
             <LocationOnIcon />
             <Stack>
-              <Typography variant="h2">Address</Typography>
-              <Typography variant="h2 ">236 5th SE Avenue, New</Typography>
-              <Typography variant="h2 ">York NY10000, United </Typography>
-              <Typography variant="h2 ">States</Typography>
+              <Typography variant="h2" fontSize={20}>
+                Address
+              </Typography>
+              <Typography variant="h5" fontSize={'14px'}>
+                236 5th SE Avenue, New
+              </Typography>
+              <Typography variant="h5" fontSize={'14px'}>
+                York NY10000, United{' '}
+              </Typography>
+              <Typography variant="h5" fontSize={'14px'}>
+                States
+              </Typography>
             </Stack>
           </Stack>
           <Stack direction="row" gap={2}>
             <PhoneIcon />
             <Stack>
-              <Typography variant="h2" mt="4">
+              <Typography variant="h2" fontSize={20} mt="4">
                 Phone
               </Typography>
-              <Typography variant="h2 ">Mobile: +(84) 546-6789</Typography>
-              <Typography variant="h2 ">Hotline: +(84) 456-6789</Typography>
+              <Typography variant="h5" fontSize={'14px'}>
+                Mobile: +(84) 546-6789
+              </Typography>
+              <Typography variant="h5" fontSize={'14px'}>
+                Hotline: +(84) 456-6789
+              </Typography>
             </Stack>
           </Stack>
           <Stack direction="row" gap={2}>
             <AccessTimeFilledIcon />
             <Stack>
-              <Typography variant="h2" mt="4">
+              <Typography variant="h2" fontSize={20} mt="4">
                 Working Time
               </Typography>
-              <Typography variant="h2 ">Monday-Friday: 9:00 -</Typography>
-              <Typography variant="h2 ">22:00</Typography>
-              <Typography variant="h2 ">Saturday-Sunday: 9:00 -</Typography>
-              <Typography variant="h2 ">21:00</Typography>
+              <Typography variant="h5" fontSize={14}>
+                Monday-Friday: 9:00 -
+              </Typography>
+              <Typography variant="h5" fontSize={14}>
+                22:00
+              </Typography>
+              <Typography variant="h5" fontSize={14}>
+                Saturday-Sunday: 9:00 -
+              </Typography>
+              <Typography variant="h5" fontSize={14}>
+                21:00
+              </Typography>
             </Stack>
           </Stack>
         </Stack>
 
         <Stack width="100%" gap={2}>
           <Stack width="100%">
-            <Typography variant="h4" pb={1}>
+            <Typography variant="h2" fontSize={16} pb={2}>
               Your name
             </Typography>
             <TextField required id="outlined-required" placeholder="Abc" />
           </Stack>
           <Stack width="100%">
-            <Typography variant="h4" pb={1}>
+            <Typography variant="h2" fontSize={16} pb={2}>
               Email address
             </Typography>
             <TextField required id="outlined-required" placeholder="Abc@def.com" />
           </Stack>
           <Stack width="100%">
-            <Typography variant="h4" pb={1}>
+            <Typography variant="h2" fontSize={16} pb={2}>
               Subject
             </Typography>
             <TextField required id="outlined-required" placeholder="This is an optional" />
           </Stack>
           <Stack width="100%">
-            <Typography variant="h4" pb={1}>
+            <Typography variant="h2" fontSize={16} pb={2}>
               Message
             </Typography>
             <TextField required id="outlined-required" placeholder="Hi! i'd like to ask about" />

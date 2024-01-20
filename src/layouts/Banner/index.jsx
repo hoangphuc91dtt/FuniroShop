@@ -7,7 +7,7 @@ const Banner = ({ title }) => {
     <div>
       <Stack position={'relative'}>
         <img
-          src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705684050/ShopImage01_plvame.png"
+          src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705856522/banner_ypqxce.png"
           alt=""
           width={'100%'}
         />
