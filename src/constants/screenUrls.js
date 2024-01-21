@@ -4,11 +4,11 @@ export const SCREEN_URL = {
   ERRORS: '/errors',
   SHOP: '/shop',
   SINGLE_PRODUCT: '/single-product/',
-  PRODUCT_COMPARISON: '/product_comparison/',
   CARD_PRODUCT: '/card-product/',
-  CARD: '/card/',
   ABOUT: '/about',
-  BLOG: '/blog',
-  CONTACT: '/contact',
-  CHECKOUT: '/checkout'
+  BLOGPAGE: '/blogpage',
+  CONTACTPAGE: '/contactpage',
+  CHECKOUT: '/checkout',
+  PRODUCT: '/product',
+  CART: '/cart'
 };

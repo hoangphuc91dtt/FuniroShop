@@ -3,9 +3,20 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
 import { Button, Card, CardContent, CardMedia, IconButton, Stack, Typography } from '@mui/material';
 import React from 'react';
+import ReorderIcon from '@mui/icons-material/Reorder';
+import { SCREEN_URL } from '../../constants/screenUrls';
 import { APP_COLORS } from '../../themes';
+import { Link } from 'react-router-dom';
 
-const ProductCard = ({ thumbnail, title, description, newPrice, oddPrice, discount }) => {
+const ProductCard = ({
+  id,
+  thumbnail,
+  title,
+  description,
+  newPrice,
+  oddPrice,
+  handleAddToCart
+}) => {
   return (
     <Card
       sx={{
@@ -31,7 +42,7 @@ const ProductCard = ({ thumbnail, title, description, newPrice, oddPrice, discou
           }
         }
       }}>
-      <CardMedia component="img" height="" image={thumbnail} alt="green iguana" />
+      <CardMedia component="img" height="" image={thumbnail} alt="Product" />
       <CardContent component={Stack} spacing={2}>
         <Typography gutterBottom variant="h2" fontSize={'24px'} component="div">
           {title}
@@ -52,18 +63,19 @@ const ProductCard = ({ thumbnail, title, description, newPrice, oddPrice, discou
         <Stack alignItems={'center'}>
           <Button
             variant="contained"
-            sx={{ bgcolor: '#FFF', color: APP_COLORS.primary.main, width: 'fit-content' }}>
+            sx={{ bgcolor: '#FFF', color: APP_COLORS.primary.main, width: 'fit-content' }}
+            onClick={() => handleAddToCart(id, thumbnail, title, oddPrice)}>
             Add to cart
           </Button>
           <Stack direction={'row'} spacing={1} pt={'10px'} sx={{ color: '#FFF' }}>
             <Stack direction={'row'} alignItems={'center'}>
-              <IconButton color="inherit">
-                <ShareIcon></ShareIcon>
+              <IconButton color="inherit" component={Link} to={SCREEN_URL.SINGLE_PRODUCT}>
+                <ReorderIcon></ReorderIcon>
               </IconButton>
-              Share
+              More
             </Stack>
-            <Stack direction={'row'} alignItems={'center'}>
-              <IconButton color="inherit">
+            <Stack direction={'row'} alignItems={'center'} color={'white'}>
+              <IconButton color="inherit" component={Link} to={SCREEN_URL.PRODUCT}>
                 <CompareArrowsIcon></CompareArrowsIcon>
               </IconButton>
               Compare

@@ -1,7 +1,8 @@
 import { Box, Stack, Typography, Button, Grid, ImageList, ImageListItem } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import ProductCard from '../../components/ProductCard';
-import { fetchData } from '../../data/api';
+import ProductCart from '../../components/ProductCart';
+import { informationCard } from '../../data/inforCard';
+import { addProduct } from '../../data/inforCard';
 import { APP_COLORS } from '../../themes';
 
 const HomePage = () => {
@@ -10,7 +11,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
-        const data = await fetchData(); // Use the fetchData function
+        const data = await informationCard(); // Use the fetchData function
         setProductsData(data);
       } catch (error) {
         // Handle error if needed
@@ -18,6 +19,13 @@ const HomePage = () => {
     };
     fetchDataFromApi();
   }, []);
+
+  const handleAddToCart = async (id, thumbnail, title, oddPrice) => {
+    const item = productsData.find((item) => item.id === id);
+
+    await addProduct(item);
+    window.location.reload();
+  };
   return (
     <>
       {/* Browse The Range */}
@@ -107,13 +115,15 @@ const HomePage = () => {
           {productsData.map(
             ({ id, thumbnail, title, description, newPrice, oddPrice, discount }) => (
               <Grid item key={id} xs={12} sm={6} md={4} lg={3}>
-                <ProductCard
+                <ProductCart
+                  id={id}
                   thumbnail={thumbnail}
                   title={title}
                   description={description}
                   newPrice={newPrice}
                   oddPrice={oddPrice}
                   discount={discount}
+                  handleAddToCart={handleAddToCart}
                 />
               </Grid>
             )
