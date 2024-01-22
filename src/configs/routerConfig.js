@@ -5,11 +5,10 @@ import ShopPage from '../pages/ShopPage';
 import ErrorPage from '../pages/ErrorPage';
 import BlogPage from '../pages/BlogPage';
 import ContactPage from '../pages/ContactPage';
-// import CheckOut from '../pages/CheckOut';
-// import SingleProcduct from '../pages/SingleProduct';
 import ProductPage from '../pages/ProductPage';
 import CartPage from '../pages/CartPage';
 import SingleProcduct from '../pages/SingleProduct';
+import CheckOut from '../pages/CheckOut/index ';
 
 export const routerConfig = [
   {
@@ -60,14 +59,14 @@ export const routerConfig = [
     isBanner: true,
     title: 'Contact'
   },
-  // {
-  //   path: SCREEN_URL.CHECKOUT,
-  //   component: CheckOut,
-  //   isHeader: true,
-  //   isFooter: true,
-  //   isBanner: true,
-  //   title: 'Check Out'
-  // },
+  {
+    path: SCREEN_URL.CHECKOUT,
+    component: CheckOut,
+    isHeader: true,
+    isFooter: true,
+    isBanner: true,
+    title: 'Check Out'
+  },
   {
     path: SCREEN_URL.SINGLE_PRODUCT,
     component: SingleProcduct,

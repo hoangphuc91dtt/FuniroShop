@@ -15,14 +15,18 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Furniro from '../../assets/Furniro.png';
 import { SCREEN_URL } from '../../constants/screenUrls';
 import { APP_COLORS } from '../../themes';
 import ShoppingCart from '../../components/ShoppingCart';
 
+const pageRoutes = [SCREEN_URL.HOME, SCREEN_URL.SHOP, SCREEN_URL.BLOGPAGE, SCREEN_URL.CONTACTPAGE];
+
 const Header = () => {
-  const [value, setValue] = useState(0);
+  const { pathname } = useLocation();
+
+  const [value, setValue] = useState(pageRoutes.indexOf(pathname) || 0);
   const [isCartOpen, setCartOpen] = useState(false);
 
   const handleChange = (event, newValue) => {

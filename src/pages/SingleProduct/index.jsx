@@ -21,21 +21,47 @@ const SingleProcduct = () => {
     fetchDataFromApi();
   }, []);
   return (
-    <Stack
-      width={'90%'}
-      ml={'5%'}
-      alignItems={'center'}
-      direction={'column'}
-      divider={<Divider orientation="horizon" flexItem />}>
-      <Stack mb={'20px'} direction={'row'} alignItems={'center'}>
-        <Stack direction={'row'} width={'50%'}>
-          <Stack direction={'column'} spacing={'10px'} wi>
-            <img src="" alt="jjjj" width="60px" height="63.16px" />
-            <img src="" alt="jjjj" width="60px" height="63.16px" />
-            <img src="" alt="jjjj" width="60px" height="63.16px" />
-            <img src="" alt="jjjj" width="60px" height="63.16px" />
+    <Stack ml={'5%'} alignItems={'center'} direction={'column'}>
+      <Stack py={'40px'} direction={'row'} alignItems={'center'} justifyContent={'space-around'}>
+        <Stack direction={'column'} spacing={'10px'} wi>
+          <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'}>
+            <img
+              src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705683979/SingleImage01_lencyf.png"
+              alt="jjjj"
+              width="60px"
+              height="64px"
+            />
           </Stack>
-          <img src="" alt="" width={'350px'} height={'414px'} />
+          <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'}>
+            <img
+              src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705683980/SingleImage02_geyuhc.png"
+              alt="jjjj"
+              width="60px"
+              height="64px"
+            />
+          </Stack>
+          <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'}>
+            <img
+              src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705683973/SingleImage03_yqyqoy.png"
+              alt="jjjj"
+              width="60px"
+              height="64px"
+            />
+          </Stack>
+          <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'}>
+            <img
+              src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705683974/SingleImage04_gncopg.png"
+              alt="jjjj"
+              width="60px"
+              height="64px"
+            />
+          </Stack>
+        </Stack>
+        <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'}>
+          <img
+            src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705683975/SingleImage05_zs2bdj.png"
+            alt=""
+          />
         </Stack>
         <Stack width={'50%'} spacing={'15px'} alignItems={'start'}>
           <Typography variant="h2">Asgaard sofa</Typography>
@@ -237,9 +263,19 @@ const SingleProcduct = () => {
           </Typography>
         </Stack>
       </Stack>
-      <Stack mt={'20px'} mb={'20px'} direction={'row'} spacing={'20px'} alignItems={'center'}>
-        <img src="" alt="" width={'605px'} height={'348px'} />
-        <img src="" alt="" width={'605px'} height={'348px'} />
+      <Stack mt={'20px'} mb={'20px'} direction={'row'} spacing={'20px'}>
+        <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'} width={'fix-content'}>
+          <img
+            src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705683975/SingleImage07_k1qhae.png"
+            alt=""
+          />
+        </Stack>
+        <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'} width="fit-content">
+          <img
+            src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705683975/SingleImage06_cwxreq.png"
+            alt=""
+          />
+        </Stack>
       </Stack>
       <Stack alignItems={'center'} mt={'30px'}>
         <Typography variant="h3">Our Products</Typography>

@@ -2,7 +2,7 @@ import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 
 const Footer = () => {
   return (
-    <Stack p={'38px 100px'}>
+    <Stack p={'20px 100px'} borderTop={'1px solid #9F9F9F'}>
       <Stack direction={'column'}>
         <Stack
           direction={'row'}
