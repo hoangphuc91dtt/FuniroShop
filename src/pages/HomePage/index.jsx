@@ -1,34 +1,36 @@
 import { Box, Stack, Typography, Button, Grid, ImageList, ImageListItem } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import ProductCart from '../../components/ProductCart';
-import { informationCard } from '../../data/inforCard';
-import { addProduct } from '../../data/inforCard';
-import { APP_COLORS } from '../../themes';
+import ProductCard from '../../components/ProductCard';
+import CompareCartList from '../../components/CompareCartList';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCompareCart } from '../../redux/slice/cartSlice';
+import { addToCart } from '../../api/cartApi';
+import { findAllProduct } from '../../api/productApi';
 
 const HomePage = () => {
-  const [productsData, setProductsData] = useState([]);
+  const dispatch = useDispatch();
+  const { cartCompare } = useSelector((state) => state.cart);
+  const { products: productsData } = useSelector((state) => state.products);
 
   useEffect(() => {
-    const fetchDataFromApi = async () => {
-      try {
-        const data = await informationCard(); // Use the fetchData function
-        setProductsData(data);
-      } catch (error) {
-        // Handle error if needed
-      }
-    };
-    fetchDataFromApi();
+    dispatch(findAllProduct());
   }, []);
 
-  const handleAddToCart = async (id, thumbnail, title, oddPrice) => {
+  useEffect(() => {
+    dispatch(getCompareCart());
+  }, []);
+
+  const handleAddToCart = async (id) => {
     const item = productsData.find((item) => item.id === id);
 
-    await addProduct(item);
-    window.location.reload();
+    dispatch(addToCart(item));
   };
   return (
     <>
-      {/* Browse The Range */}
+      {(Object.keys(cartCompare[0]).length > 0 ||
+        Object.keys(cartCompare[1]).length > 0 ||
+        Object.keys(cartCompare[2]).length > 0) && <CompareCartList />}
+
       <Stack sx={{ position: 'relative' }}>
         <img
           src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705727250/homeImage01_yenbiy.png"
@@ -113,9 +115,9 @@ const HomePage = () => {
         </Typography>
         <Grid container spacing={3}>
           {productsData.map(
-            ({ id, thumbnail, title, description, newPrice, oddPrice, discount }) => (
+            ({ id, thumbnail, title, description, newPrice, oddPrice, discount, general }) => (
               <Grid item key={id} xs={12} sm={6} md={4} lg={3}>
-                <ProductCart
+                <ProductCard
                   id={id}
                   thumbnail={thumbnail}
                   title={title}
@@ -123,15 +125,13 @@ const HomePage = () => {
                   newPrice={newPrice}
                   oddPrice={oddPrice}
                   discount={discount}
+                  general={general}
                   handleAddToCart={handleAddToCart}
                 />
               </Grid>
             )
           )}
         </Grid>
-        <Stack pt={'40px'} pb={'40px'}>
-          <Button variant="outlined">Show More</Button>
-        </Stack>
       </Stack>
       {/* Inspirations */}
       <Stack

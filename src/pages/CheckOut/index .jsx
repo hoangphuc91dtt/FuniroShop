@@ -1,102 +1,72 @@
-import { Padding } from '@mui/icons-material';
-import { Autocomplete, Box, Button, FormControl, FormControlLabel, FormLabel, InputLabel, Radio, RadioGroup, Select, Stack, TextField, Typography } from '@mui/material';
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  Stack,
+  TextField,
+  Typography
+} from '@mui/material';
 
 const CheckOut = () => {
   return (
     <>
-      <Stack direction="row" ml={'5%'} spacing={'4%'} width={'90%'} >
+      <Stack direction="row" ml={'5%'} spacing={'4%'} width={'90%'}>
         <Stack width={'48%'} alignItems={'start'}>
-          <Typography variant='h5' pb={1} justifyContent={'left'}>Your Name</Typography>
+          <Typography variant="h5" pb={1} justifyContent={'left'}>
+            Your Name
+          </Typography>
           <Stack spacing={'4%'} direction="row" marginBottom={'15px'} width={'100%'}>
             <Stack width={'48%'}>
-              <TextField
-                height='75px'
-                id="outlined-required"
-                placeholder='First name'
-              />
+              <TextField height="75px" id="outlined-required" placeholder="First name" />
             </Stack>
             <Stack width={'48%'}>
-              <TextField
-                height='75px'
-                width='48%'
-                id="outlined-required"
-                placeholder='Last name'
-              />
+              <TextField height="75px" width="48%" id="outlined-required" placeholder="Last name" />
             </Stack>
           </Stack>
-          <Stack direction={"column"} alignItems={'start'} width={'100%'}>
-            <Typography variant='h5' pb={1} justifyContent={'left'}>Company Name</Typography>
+          <Stack direction={'column'} alignItems={'start'} width={'100%'}>
+            <Typography variant="h5" pb={1} justifyContent={'left'}>
+              Company Name
+            </Typography>
             <Stack pb={'15px'} width={'100%'}>
-              <TextField
-
-                height="75px"
-                id="outlined-required"
-                placeholder='Company Name'
-              />
-            </Stack >
-            <Typography variant='h5' pb={1} justifyContent={'left'}>Your Country</Typography>
-            <Stack pb={'15px'} width={'100%'}>
-              <TextField
-
-                height="75px"
-                id="outlined-required"
-                placeholder='Your Country'
-              />
+              <TextField height="75px" id="outlined-required" placeholder="Company Name" />
             </Stack>
-            <Typography variant='h5' pb={1} justifyContent={'left'}>Town / City</Typography>
+            <Typography variant="h5" pb={1} justifyContent={'left'}>
+              Your Country
+            </Typography>
             <Stack pb={'15px'} width={'100%'}>
-              <TextField
-
-                height="75px"
-                id="outlined-required"
-                placeholder='Town / City'
-              />
-            </Stack >
-            <Typography variant='h5' pb={1} justifyContent={'left'}>Province</Typography>
-            <Stack pb={'15px'} width={'100%'}>
-              <TextField
-
-                height="75px"
-                id="outlined-required"
-                placeholder='Provinces'
-              />
+              <TextField height="75px" id="outlined-required" placeholder="Your Country" />
             </Stack>
-            <Typography variant='h5' pb={1} justifyContent={'left'}>Street Adress</Typography>
+            <Typography variant="h5" pb={1} justifyContent={'left'}>
+              Town / City
+            </Typography>
             <Stack pb={'15px'} width={'100%'}>
-              <TextField
-
-                height="75px"
-                id="outlined-required"
-                placeholder='Street Adress'
-              />
+              <TextField height="75px" id="outlined-required" placeholder="Town / City" />
             </Stack>
-            <Typography variant='h5' pb={1} justifyContent={'left'}>Phone Number</Typography>
+            <Typography variant="h5" pb={1} justifyContent={'left'}>
+              Province
+            </Typography>
             <Stack pb={'15px'} width={'100%'}>
-              <TextField
-
-                height="75px"
-                id="outlined-required"
-                placeholder='Phone Number'
-              />
+              <TextField height="75px" id="outlined-required" placeholder="Provinces" />
+            </Stack>
+            <Typography variant="h5" pb={1} justifyContent={'left'}>
+              Street Adress
+            </Typography>
+            <Stack pb={'15px'} width={'100%'}>
+              <TextField height="75px" id="outlined-required" placeholder="Street Adress" />
+            </Stack>
+            <Typography variant="h5" pb={1} justifyContent={'left'}>
+              Phone Number
+            </Typography>
+            <Stack pb={'15px'} width={'100%'}>
+              <TextField height="75px" id="outlined-required" placeholder="Phone Number" />
             </Stack>
           </Stack>
         </Stack>
-        <Stack width={'48%'} paddingTop={'70px'}>
-          <Stack direction={"row"} justifyContent={'space-between'}>
-            <Stack width={'50%'} alignItems={'start'}>
-              <Typography variant='h4'>Product</Typography>
-              <Typography variant='h5'>Assgaard sofa</Typography>
-              <Typography variant='h5'>Subtotal</Typography>
-              <Typography variant='h5'>Total</Typography>
-            </Stack>
-            <Stack width={'50%'} alignItems={'end'}>
-              <Typography variant='h5'>Subtotal</Typography>
-              <Typography variant='h5'>Rs. 250,000.00</Typography>
-              <Typography variant='h5'>Rs. 250,000.00</Typography>
-              <Typography variant='h3' color={'#b8822f'}>
-                Rs. 250,000.00</Typography>
-            </Stack>
-          </Stack>
+        <Stack width={'48%'} spacing={4}>
+          <Stack direction={'row'} justifyContent={'space-between'}></Stack>
           <Stack>
             <FormControl conponent={Stack} justifyContent={'start'}>
               <FormLabel id="demo-radio-buttons-group-label"></FormLabel>
@@ -104,29 +74,33 @@ const CheckOut = () => {
                 sx={{ fontSize: 5 }}
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue="tranfer"
-                name="radio-buttons-group"
-              >
-                <FormControlLabel value="tranfer" control={<Radio />} label="Direct Bank Transfer" />
-                <Typography variant='h5' fontWeight={'300'} align='justify' fontSize={'16px'} >
-                  Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
+                name="radio-buttons-group">
+                <FormControlLabel
+                  value="tranfer"
+                  control={<Radio />}
+                  label="Direct Bank Transfer"
+                />
+                <Typography variant="h5" fontWeight={'300'} align="justify" fontSize={'16px'}>
+                  Make your payment directly into our bank account. Please use your Order ID as the
+                  payment reference. Your order will not be shipped until the funds have cleared in
+                  our account.
                 </Typography>
                 <FormControlLabel value="cash" control={<Radio />} label="Cash On Delivery" />
-                <Typography variant='h5' fontWeight={'300'} align='justify' fontSize={'16px'}>
-                  Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.
+                <Typography variant="h5" fontWeight={'300'} align="justify" fontSize={'16px'}>
+                  Your personal data will be used to support your experience throughout this
+                  website, to manage access to your account, and for other purposes described in our
+                  privacy policy.
                 </Typography>
               </RadioGroup>
             </FormControl>
           </Stack>
           <Stack mt={'40px'} alignItems={'center'}>
             <Button variant="outlined" sx={{ borderRadius: '8px' }}>
-              <Typography sx={{ padding: '10px 90px' }}>
-                Place order
-              </Typography>
+              <Typography sx={{ padding: '10px 90px' }}>Place order</Typography>
             </Button>
           </Stack>
         </Stack>
       </Stack>
-
     </>
   );
 };
