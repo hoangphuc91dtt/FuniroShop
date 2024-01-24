@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { loginUser, registerUser } from '../../api/userAPI';
 
+
 const initialState = {
   users: [],
   userCurrent: {},
@@ -10,6 +11,7 @@ const initialState = {
 
 const userSlice = createSlice({
   name: 'users',
+
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
