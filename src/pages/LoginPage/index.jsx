@@ -62,7 +62,7 @@ const LoginPage = () => {
           position: 'absolute',
           top: '40%',
           right: 400,
-          padding: '40px',
+          padding: 40,
           width: 500,
           backgroundColor: '#FFF3E3'
         }}>
