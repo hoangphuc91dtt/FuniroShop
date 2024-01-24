@@ -4,11 +4,14 @@ import { Box, Button, Input, InputLabel, Stack, TextField, Typography } from '@m
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '.SingleProduct';
-import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '.SingleProduct';
 
 const schema = yup.object({
+  username: yup
+    .string()
+    .min(3, 'Username phải tối thiểu 8=3 ký tự.')
+    .required('Trường này không được để trống.'),
   email: yup
     .string()
     .email('Địa chỉ email không hợp lệ.')
@@ -16,10 +19,14 @@ const schema = yup.object({
   password: yup
     .string()
     .required('Trường này không được để trống.')
-    .min(8, 'Mật khẩu phải tối thiểu 8 ký tự.')
+    .min(8, 'Mật khẩu phải tối thiểu 8 ký tự.'),
+  confirmPassword: yup
+    .string()
+    .required('Trường này không được để trống.')
+    .oneOf([yup.ref('password'), null], 'Mật khẩu không trùng khớp.')
 });
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const navigate = useNavigate();
   const {
     register,
@@ -31,18 +38,16 @@ const LoginPage = () => {
   });
 
   const dispatch = useDispatch();
-  const navigator = useNavigate();
-  const { isLoading, message } = useSelector((state) => state.users);
 
-  const handleLogin = (data) => {
-    dispatch(loginUser(data));
+  const handleRegister = (data) => {
+    const { confirmPassword, ...res } = data;
+    const user = {
+      ...res,
+      token: btoa(JSON.stringify(data))
+    };
+
+    dispatch(registerUser(user));
   };
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    if (token && !isLoading) navigator(SCREEN_URL.HOME);
-  }, [isLoading]);
 
   return (
     <>
@@ -57,7 +62,7 @@ const LoginPage = () => {
       <Stack
         justifyContent={'space-between'}
         component="form"
-        onSubmit={handleSubmit(handleLogin)}
+        onSubmit={handleSubmit(handleRegister)}
         sx={{
           position: 'absolute',
           top: '40%',
@@ -69,10 +74,16 @@ const LoginPage = () => {
         {/* Nội dung Stack 2 */}
 
         <Typography py={'10px'} variant="h1" fontSize={'30px'} color={'#b8822f'}>
-          LOGIN
+          Register
         </Typography>
         <Stack spacing={4}>
-          {message && <Typography>{message}</Typography>}
+          <TextField
+            variant="standard"
+            placeholder="Username"
+            error={!!errors.username}
+            helperText={errors.username?.message || ''}
+            {...register('username')}
+          />
           <TextField
             variant="standard"
             placeholder="Email"
@@ -88,15 +99,23 @@ const LoginPage = () => {
             helperText={errors.password?.message || ''}
             {...register('password')}
           />
+          <TextField
+            variant="standard"
+            placeholder="Confirm Password"
+            type="password"
+            error={!!errors.confirmPassword}
+            helperText={errors.confirmPassword?.message || ''}
+            {...register('confirmPassword')}
+          />
         </Stack>
         <Box mt={4}>
           <Button type="submit" variant="contained">
-            {isLoading ? 'Loading...' : 'Đăng Nhập'}
+            Đăng Ký
           </Button>
           <Stack>
             <Typography mt={2}>
               {' '}
-              Nếu chưa có tài khoản ? <Link to={SCREEN_URL.REGISTER}>Đăng Ký</Link>
+              Nếu đã có tài khoản <Link to={SCREEN_URL.LOGIN}>Đăng Nhập</Link>
             </Typography>
           </Stack>
         </Box>
@@ -105,4 +124,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
