@@ -7,8 +7,9 @@ import BlogPage from '../pages/BlogPage';
 import ContactPage from '../pages/ContactPage';
 import ProductPage from '../pages/ProductPage';
 import CartPage from '../pages/CartPage';
-import SingleProcduct from '../pages/SingleProduct';
+import SingleProduct from '../pages/SingleProduct';
 import CheckOut from '../pages/CheckOut/index ';
+import RegisterPage from '../pages/RegisterPage';
 
 export const routerConfig = [
   {
@@ -24,8 +25,16 @@ export const routerConfig = [
     component: LoginPage,
     isHeader: false,
     isFooter: false,
-    isBanner: true,
+    isBanner: false,
     title: 'Login'
+  },
+  {
+    path: SCREEN_URL.REGISTER,
+    component: RegisterPage,
+    isHeader: false,
+    isFooter: false,
+    isBanner: false,
+    title: 'Register'
   },
   {
     path: SCREEN_URL.SHOP,
@@ -44,7 +53,7 @@ export const routerConfig = [
     title: '404 Not Found'
   },
   {
-    path: SCREEN_URL.BLOGPAGE,
+    path: SCREEN_URL.BLOG_PAGE,
     component: BlogPage,
     isHeader: true,
     isFooter: true,
@@ -52,7 +61,7 @@ export const routerConfig = [
     title: 'Blog'
   },
   {
-    path: SCREEN_URL.CONTACTPAGE,
+    path: SCREEN_URL.CONTACT_PAGE,
     component: ContactPage,
     isHeader: true,
     isFooter: true,
@@ -69,7 +78,7 @@ export const routerConfig = [
   },
   {
     path: SCREEN_URL.SINGLE_PRODUCT,
-    component: SingleProcduct,
+    component: SingleProduct,
     isHeader: true,
     isFooter: true,
     isBanner: true,

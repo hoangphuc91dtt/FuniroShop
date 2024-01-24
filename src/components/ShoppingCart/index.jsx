@@ -8,27 +8,21 @@ import {
   Typography,
   Button
 } from '@mui/material';
-import { deleteItem, fetchData } from '../../data/api';
+import { findDeleteCartById, findAllCart } from '../../api/cartApi';
 import { Link } from 'react-router-dom';
 import { SCREEN_URL } from '../../constants/screenUrls';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ShoppingCart = ({ isOpen, onClose }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const dispatch = useDispatch();
+  const { cart: cartItems } = useSelector((state) => state.cart);
 
   useEffect(() => {
-    // Fetch data when the component mounts
-    fetchData()
-      .then((data) => setCartItems(data))
-      .catch((error) => console.error('Error fetching data:', error));
+    dispatch(findAllCart());
   }, []);
 
   const handleRemoveItem = (id) => {
-    const index = cartItems.findIndex((item) => item.id === id);
-    // Remove the item from the cart based on its index
-    const updatedCart = [...cartItems];
-    updatedCart.splice(index, 1);
-    setCartItems(updatedCart);
-    deleteItem(id);
+    dispatch(findDeleteCartById(id));
   };
 
   return (
@@ -48,7 +42,7 @@ const ShoppingCart = ({ isOpen, onClose }) => {
                 <Typography variant="h3" fontSize={'20px'}>
                   {item.title}
                 </Typography>
-                <Typography variant="body1">${item.oddPrice}</Typography>
+                <Typography variant="body1">Rp {item.oddPrice}</Typography>
               </Stack>
               <Button variant="outlined" size="small" onClick={() => handleRemoveItem(item.id)}>
                 Remove
@@ -59,9 +53,6 @@ const ShoppingCart = ({ isOpen, onClose }) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Close</Button>
-        <Button component={Link} to={SCREEN_URL.PRODUCT} onClick={onClose}>
-          Compare
-        </Button>
         <Button component={Link} to={SCREEN_URL.CART} onClick={onClose}>
           Cart
         </Button>

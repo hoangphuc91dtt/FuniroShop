@@ -1,10 +1,25 @@
-import { Button, Input, Stack, Typography } from '@mui/material';
-import React from 'react';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { Delete } from '@mui/icons-material';
+import { Button, IconButton, Stack, Typography } from '@mui/material';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { findAllCart, findDeleteCartById } from '../../api/cartApi';
+import FutureComponent from '../../components/FutureComponent';
 import { SCREEN_URL } from '../../constants/screenUrls';
 
 const CartPage = () => {
+  const dispatch = useDispatch();
+  const { cart: cartItems } = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    dispatch(findAllCart());
+  }, []);
+  const handleRemoveItem = (id) => {
+    dispatch(findDeleteCartById(id));
+  };
+
+  const total = cartItems.reduce((total, { newPrice }) => total + newPrice, 0);
+
   return (
     <>
       <Stack padding={'72px 100px'} bgcolor={'#FFF;'}>
@@ -16,85 +31,89 @@ const CartPage = () => {
               justifyContent="space-around"
               alignItems="center"
               padding={'15px 70px'}>
-              <Typography marginLeft={'60px'}>Product </Typography>
-              <Typography marginLeft={'57px'}>Price</Typography>
+              <Typography>Product </Typography>
+              <Typography>Price</Typography>
               <Typography>Quantity</Typography>
               <Typography>Subtotal</Typography>
             </Stack>
-            <Stack
-              direction="row"
-              alignItems="center"
-              marginTop="30px"
-              // justifyContent="space-between"
-            >
-              <img
-                src=""
-                alt=""
-                style={{
-                  borderRadius: '5px',
-                  width: '111px',
-                  height: '90px'
-                  // justifyContent: 'space-between'
-                }}
-              />
+            {cartItems.map(({ id, title, thumbnail, newPrice }) => (
               <Stack
-                width={'80%'}
+                key={id}
                 direction="row"
-                justifyContent="space-around"
-                alignItems="center">
-                <Typography
-                  sx={{
-                    color: '#9F9F9F',
-                    fontFamily: 'Poppins',
-                    fontSize: '16px',
-                    fontStyle: 'normal',
-                    fontWeight: 400,
-                    lineHeight: 'normal'
-                  }}>
-                  Asgaard sofa
-                </Typography>
-                <Typography
-                  sx={{
-                    color: '#9F9F9F',
-                    fontFamily: 'Poppins',
-                    fontSize: '16px',
-                    fontStyle: 'normal',
-                    fontWeight: 400,
-                    lineHeight: 'normal'
-                  }}>
-                  Rs. 250,000.00
-                </Typography>
+                alignItems="center"
+                marginTop="30px"
+                // justifyContent="space-between"
+              >
+                <img
+                  src={thumbnail}
+                  alt={title}
+                  style={{
+                    borderRadius: '5px',
+                    width: '111px',
+                    height: '90px',
+                    objectFit: 'cover'
+                  }}
+                />
+                <Stack
+                  width={'80%'}
+                  direction="row"
+                  justifyContent="space-around"
+                  alignItems="center">
+                  <Typography
+                    sx={{
+                      color: '#9F9F9F',
+                      fontFamily: 'Poppins',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 400,
+                      lineHeight: 'normal'
+                    }}>
+                    {title}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: '#9F9F9F',
+                      fontFamily: 'Poppins',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 400,
+                      lineHeight: 'normal'
+                    }}>
+                    Rs. {newPrice}
+                  </Typography>
 
-                <Typography
-                  sx={{
-                    // minWidth: 0,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: '3px',
-                    border: '1px solid black',
-                    width: '32px',
-                    height: '32px'
-                  }}>
-                  1
-                </Typography>
-                <Typography
-                  sx={{
-                    color: '#000',
-                    fontFamily: 'Poppins',
-                    fontSize: '16px',
-                    fontStyle: 'normal',
-                    fontWeight: 400,
-                    lineHeight: 'normal'
-                  }}>
-                  Rs. 250,000.00
-                </Typography>
+                  <Typography
+                    sx={{
+                      // minWidth: 0,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: '3px',
+                      border: '1px solid black',
+                      width: '32px',
+                      height: '32px'
+                    }}>
+                    1
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: '#000',
+                      fontFamily: 'Poppins',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 400,
+                      lineHeight: 'normal'
+                    }}>
+                    Rs. {newPrice}
+                  </Typography>
+                </Stack>
+                <Stack>
+                  <IconButton onClick={() => handleRemoveItem(id)}>
+                    <Delete size={'28px'} style={{ color: '#B88E2F', flexShrink: 0 }} />
+                  </IconButton>
+                </Stack>
               </Stack>
-              <Stack>
-                Icon{' '}
-                {/* <RiDeleteBin7Fill size={'28px'} style={{ color: '#B88E2F', flexShrink: 0 }} /> */}
-              </Stack>
-            </Stack>
+            ))}
           </Stack>
 
           <Stack
@@ -127,7 +146,7 @@ const CartPage = () => {
                     fontWeight: 400,
                     lineHeight: 'normal'
                   }}>
-                  Rs. 250,000.00
+                  Rs.{total}
                 </Typography>
               </Stack>
 
@@ -142,7 +161,7 @@ const CartPage = () => {
                     fontWeight: 500,
                     lineHeight: 'normal'
                   }}>
-                  Rs. 250,000.00
+                  Rs.{total}
                 </Typography>
               </Stack>
             </Stack>
@@ -150,7 +169,7 @@ const CartPage = () => {
             <Button
               label="Home"
               component={Link}
-              to={SCREEN_URL.HOME}
+              to={SCREEN_URL.CHECKOUT}
               sx={{
                 border: '1px solid #000000',
                 borderRadius: '7px',
@@ -162,6 +181,7 @@ const CartPage = () => {
           </Stack>
         </Stack>
       </Stack>
+      <FutureComponent />
     </>
   );
 };

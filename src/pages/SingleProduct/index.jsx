@@ -2,71 +2,91 @@ import { Box, Button, Divider, Grid, Rating, Stack, Typography } from '@mui/mate
 import Facebook from '@mui/icons-material/FacebookRounded';
 import Linked from '@mui/icons-material/LinkedIn';
 import Twitter from '@mui/icons-material/Twitter';
-import ProductCart from '../../components/ProductCart';
-import { fetchData } from '../../data/api';
-import React, { useEffect, useState } from 'react';
+import ProductCard from '../../components/ProductCard';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { findAllProduct, findProductById } from '../../api/productApi';
+import { useParams } from 'react-router-dom';
+import { addCompareCart } from '../../redux/slice/cartSlice';
+import { addToCart } from '../../api/cartApi';
 
-const SingleProcduct = () => {
-  const [productsData, setProductsData] = useState([]);
+const SingleProduct = () => {
+  const dispatch = useDispatch();
+  const { productId } = useParams();
+  const { products: productsData, productDetail } = useSelector((state) => state.products);
 
   useEffect(() => {
-    const fetchDataFromApi = async () => {
-      try {
-        const data = await fetchData(); // Use the fetchData function
-        setProductsData(data);
-      } catch (error) {
-        // Handle error if needed
-      }
-    };
-    fetchDataFromApi();
+    dispatch(findAllProduct());
   }, []);
+
+  useEffect(() => {
+    dispatch(findProductById(productId));
+  }, []);
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(productDetail));
+  };
   return (
     <Stack ml={'5%'} alignItems={'center'} direction={'column'}>
       <Stack py={'40px'} direction={'row'} alignItems={'center'} justifyContent={'space-around'}>
         <Stack direction={'column'} spacing={'10px'} wi>
-          <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'}>
+          <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'} overflow={'hidden'}>
             <img
-              src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705683979/SingleImage01_lencyf.png"
+              src={productDetail?.imageList ? productDetail?.imageList[1] : ''}
               alt="jjjj"
               width="60px"
               height="64px"
             />
           </Stack>
-          <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'}>
+          <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'} overflow={'hidden'}>
             <img
-              src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705683980/SingleImage02_geyuhc.png"
+              src={productDetail?.imageList ? productDetail?.imageList[2] : ''}
               alt="jjjj"
               width="60px"
               height="64px"
             />
           </Stack>
-          <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'}>
+          <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'} overflow={'hidden'}>
             <img
-              src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705683973/SingleImage03_yqyqoy.png"
+              src={productDetail?.imageList ? productDetail?.imageList[3] : ''}
               alt="jjjj"
               width="60px"
               height="64px"
             />
           </Stack>
-          <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'}>
+          <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'} overflow={'hidden'}>
             <img
-              src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705683974/SingleImage04_gncopg.png"
+              src={productDetail?.imageList ? productDetail?.imageList[4] : ''}
               alt="jjjj"
               width="60px"
               height="64px"
             />
           </Stack>
         </Stack>
-        <Stack bgcolor={'#F9F1E7'} borderRadius={'10px'}>
+        <Stack
+          bgcolor={'#F9F1E7'}
+          borderRadius={'10px'}
+          width={500}
+          height={350}
+          overflow={'hidden'}>
           <img
-            src="https://res.cloudinary.com/dvujrq61r/image/upload/v1705683975/SingleImage05_zs2bdj.png"
+            src={productDetail?.thumbnail}
             alt=""
+            width={'100%'}
+            height={'100%'}
+            style={{ objectFit: 'cover' }}
           />
         </Stack>
         <Stack width={'50%'} spacing={'15px'} alignItems={'start'}>
-          <Typography variant="h2">Asgaard sofa</Typography>
+          <Typography variant="h2">{productDetail?.title}</Typography>
           <Typography variant="h3" color={'#9F9F9F'}>
-            Rs. 250,000.00
+            Rs.{' '}
+            {productDetail?.newPrice
+              ? productDetail?.newPrice.toLocaleString('it-IT', {
+                  style: 'currency',
+                  currency: 'VND'
+                })
+              : 0}
           </Typography>
           <Stack
             direction={'row'}
@@ -167,7 +187,9 @@ const SingleProcduct = () => {
                 <Button>+</Button>
               </Button>
 
-              <Button variant="outlined">Add to card</Button>
+              <Button variant="outlined" onClick={handleAddToCart}>
+                Add to card
+              </Button>
             </Stack>
             <Stack direction={'row'} spacing={'10px'}>
               <Box>
@@ -283,7 +305,7 @@ const SingleProcduct = () => {
           {productsData.map(
             ({ id, thumbnail, title, description, newPrice, oddPrice, discount }) => (
               <Grid item key={id} xs={12} sm={6} md={4} lg={3}>
-                <ProductCart
+                <ProductCard
                   thumbnail={thumbnail}
                   title={title}
                   description={description}
@@ -303,4 +325,4 @@ const SingleProcduct = () => {
   );
 };
 
-export default SingleProcduct;
+export default SingleProduct;

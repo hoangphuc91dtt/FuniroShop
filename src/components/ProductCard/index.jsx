@@ -1,12 +1,12 @@
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ShareIcon from '@mui/icons-material/Share';
 import { Button, Card, CardContent, CardMedia, IconButton, Stack, Typography } from '@mui/material';
-import React from 'react';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import { SCREEN_URL } from '../../constants/screenUrls';
 import { APP_COLORS } from '../../themes';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addCompareCart } from '../../redux/slice/cartSlice';
 
 const ProductCard = ({
   id,
@@ -15,8 +15,27 @@ const ProductCard = ({
   description,
   newPrice,
   oddPrice,
+  discount,
+  general,
   handleAddToCart
 }) => {
+  const dispatch = useDispatch();
+
+  const handleAddCompareCart = () => {
+    const cart = {
+      id,
+      thumbnail,
+      title,
+      description,
+      newPrice,
+      oddPrice,
+      discount,
+      general
+    };
+
+    dispatch(addCompareCart(cart));
+  };
+
   return (
     <Card
       sx={{
@@ -42,13 +61,13 @@ const ProductCard = ({
           }
         }
       }}>
-      <CardMedia component="img" height="" image={thumbnail} alt="Product" />
+      <CardMedia component="img" height={300} width={100} image={thumbnail} alt="Product" />
       <CardContent component={Stack} spacing={2}>
         <Typography gutterBottom variant="h2" fontSize={'24px'} component="div">
           {title}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          {description}
+          <p dangerouslySetInnerHTML={{ __html: description }}></p>
         </Typography>
         <Stack direction={'row'} justifyContent={'space-between'}>
           <Typography variant="h5" fontWeight={700} color="text.secondary">
@@ -62,20 +81,27 @@ const ProductCard = ({
       <div className="modal">
         <Stack alignItems={'center'}>
           <Button
-            variant="contained"
+            variant="outlined"
             sx={{ bgcolor: '#FFF', color: APP_COLORS.primary.main, width: 'fit-content' }}
             onClick={() => handleAddToCart(id, thumbnail, title, oddPrice)}>
             Add to cart
           </Button>
-          <Stack direction={'row'} spacing={1} pt={'10px'} sx={{ color: '#FFF' }}>
+          <Stack
+            direction={'row'}
+            spacing={1}
+            pt={'10px'}
+            sx={{ color: '#000', fontSize: 20, fontWeight: '700' }}>
             <Stack direction={'row'} alignItems={'center'}>
-              <IconButton color="inherit" component={Link} to={SCREEN_URL.SINGLE_PRODUCT}>
+              <IconButton
+                color="inherit"
+                component={Link}
+                to={SCREEN_URL.SINGLE_PRODUCT.replace(':productId', id)}>
                 <ReorderIcon></ReorderIcon>
               </IconButton>
               More
             </Stack>
             <Stack direction={'row'} alignItems={'center'} color={'white'}>
-              <IconButton color="inherit" component={Link} to={SCREEN_URL.PRODUCT}>
+              <IconButton color="inherit" onClick={handleAddCompareCart}>
                 <CompareArrowsIcon></CompareArrowsIcon>
               </IconButton>
               Compare
