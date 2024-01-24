@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, registerUser } from '.SingleProduct';
+import { loginUser, registerUser } from '../../api/userAPI';
+
 
 const initialState = {
   users: [],
@@ -9,7 +10,8 @@ const initialState = {
 };
 
 const userSlice = createSlice({
-  name: 'userss',
+  name: 'users',
+
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {

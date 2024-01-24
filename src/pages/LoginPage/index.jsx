@@ -5,8 +5,8 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '.SingleProduct';
 import { useEffect } from 'react';
+import { loginUser } from '../../api/userAPI';
 
 const schema = yup.object({
   email: yup
@@ -62,7 +62,8 @@ const LoginPage = () => {
           position: 'absolute',
           top: '40%',
           right: 400,
-          padding: '40px',
+          padding: 40,
+
           width: 500,
           backgroundColor: '#FFF3E3'
         }}>
